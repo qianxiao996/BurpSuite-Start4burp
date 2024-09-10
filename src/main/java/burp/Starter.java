@@ -22,6 +22,7 @@ public class Starter implements Runnable {
             command = command.replace("{{root_main}}",Config.getRequstRootDomain());
             command = command.replace("{{urldir2}}",Config.getRequstUrlDir2());
             command = command.replace("{{port}}",Config.getRequstPort());
+            command = command.replace("{{root_url}}",Config.getRequstRootUrl());
             List<String> cmds = new ArrayList<>();
             int osType = Util.getOSType();
             if(osType == Util.OS_WIN){

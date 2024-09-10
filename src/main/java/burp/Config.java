@@ -15,6 +15,7 @@ public class Config {
     private static String REQUST_ROOT_DOMAIN = "";
 
     private static String REQUST_URl_DIR_2 = "";
+    private static String REQUST_ROOT_URl = "";
 
 
     private static String REQUST_PORT = "";
@@ -162,6 +163,15 @@ public class Config {
     public static String getRequstUrlDir2() {
         return REQUST_URl_DIR_2;
     }
+    public static void setRequstRootUrl(String requstrooturl) {
+        REQUST_ROOT_URl = requstrooturl;
+    }
+    public static String getRequstRootUrl() {
+        return REQUST_ROOT_URl;
+    }
+
+
+
     public static void setRequstPort(String requstPort) {
         REQUST_PORT = requstPort;
     }

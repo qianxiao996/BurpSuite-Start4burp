@@ -72,9 +72,12 @@ public class Menu implements IContextMenuFactory {
                         {
                             root_doamin = host;
                         }
+                        String rooturl = httpService +httpurl.getPath();
+
                         Config.setRequstDomain(host);
                         Config.setRequstRootDomain(root_doamin);
                         Config.setRequstUrlDir2(urldir_2);
+                        Config.setRequstRootUrl(rooturl);
                         Config.setRequstPort(String.valueOf(port));
 //                        System.out.println(Config.getCmdOptionsCommand());
                         if((Config.getCmdOptionsCommand()).contains("{{file}}"))
