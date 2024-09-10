@@ -9,7 +9,7 @@ public class Config {
     //插件名称
     private static final String EXTENDER_NAME = "Start4burp";
     //插件版本
-    private static final String EXTENDER_VERSION = "1.0";
+    private static final String EXTENDER_VERSION = "1.1";
     private static String REQUST_URL;
     private static String REQUST_DOAMIN = "";
     private static String REQUST_ROOT_DOMAIN = "";
@@ -34,7 +34,7 @@ public class Config {
     private static boolean IS_INJECT = false;
 
 
-    public static Map<String,Object> obj;
+    public static Map<String,Object> obj = new HashMap<>();
     public static String getExtenderName() {
         return EXTENDER_NAME;
     }
@@ -86,6 +86,7 @@ public class Config {
         try {
             Writer ws = new OutputStreamWriter(new FileOutputStream(ConfigPath), StandardCharsets.UTF_8);
             yaml.dump(obj, ws);
+            ws.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -183,7 +184,7 @@ public class Config {
 
 //    {{url}} {{file}} {{domain}} {{root_main}}   {{urldir2}}   {{port}}
 
-    public static Map<String, Object> LoadMenu() throws FileNotFoundException {
+    public static Map<String, Object> LoadMenu() throws IOException {
         // 构造函数，初始化配置
         File Start4BurpPathFile = new File(Start4BurpConfigPath);
         if (!(Start4BurpPathFile.exists() && Start4BurpPathFile.isDirectory())) {
@@ -192,29 +193,28 @@ public class Config {
 
         File settingPathFile = new File(ConfigPath);
         if (!(settingPathFile.exists())) {
-            //配置文件不存啊在
+            ArrayList<Map>  plugins_list  =  new ArrayList<>();
+            Map single_plugins = new HashMap<>();
+            single_plugins.put("name","sqlmap");
+            single_plugins.put("mode","python3");
+            single_plugins.put("file","sqlmap.py");
+            single_plugins.put("parameters","-r {{file}}");
+            Map<String,Object>  temp_plug = new HashMap<>();
+            temp_plug.put("plugin",single_plugins);
+            plugins_list.add(temp_plug);
+            obj.put("plugins",plugins_list);
+            Writer ws = new OutputStreamWriter(new FileOutputStream(ConfigPath), StandardCharsets.UTF_8);
+            yaml.dump(obj, ws);
+            ws.close();
+            return obj;
+        }else {
+            InputStream inorder = new FileInputStream(ConfigPath);
+            obj = yaml.load(inorder);
+            inorder.close();
+            return obj;
         }
-        InputStream inorder = new FileInputStream(ConfigPath);
-        obj = yaml.load(inorder);
-//        List<Map<String,Object>> list = (List<Map<String, Object>>) obj.get("plugins");
-
-        //        List<Map<String,Object>> list  = yaml.load(inorder);
-
-//        System.out.println(list);
-//        for(Map<String, Object> data    :    list)
-//        {
-//            Map<String,String> single_data = (Map<String, String>) data.get("plugin");
-//            System.out.println(single_data.get("name"));
-//        }
-        return obj;
-
-
-
-
-
-
     }
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         Config.LoadMenu();
     }
 }
