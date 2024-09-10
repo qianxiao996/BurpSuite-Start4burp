@@ -6,12 +6,14 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static burp.BurpExtender.helpers;
+import static burp.BurpExtender.stdout;
 
 
 public class Menu implements IContextMenuFactory {
@@ -24,7 +26,7 @@ public class Menu implements IContextMenuFactory {
         try {
             all_data = Config.LoadMenu();
             listmenu = (List<Map<String, Object>>) all_data.get("plugins");
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
         for(Map<String, Object> data    :    listmenu)

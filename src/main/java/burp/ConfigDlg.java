@@ -48,27 +48,26 @@ public class ConfigDlg extends JDialog {
         JLabel lbCmdOptionHelp = new JLabel("?");
         lbCmdOptionHelp.setToolTipText("eg: -u {{url}} -f {{file}} -d {{domain}} {{Maindomain}} ");
         mainPanel.setLayout(new GridBagLayout());
-        mainPanel.add(lbRunName,new GBC(0,0,2,1).setFill(GBC.BOTH).setInsets(10,10,2,0));
-        mainPanel.add(tfRunName, new GBC(1,0,3,1).setFill(GBC.BOTH).setInsets(10,0,2,10));
-        mainPanel.add(lbRunNameHelp,new GBC(4,0,6,1).setFill(GBC.BOTH).setInsets(10,0,2,10));
-        mainPanel.add(lbPluginPath,new GBC(0,1,2,1).setFill(GBC.BOTH).setInsets(10,10,2,0));
-        mainPanel.add(tfPluginPath,new GBC(1,1,3,1).setFill(GBC.BOTH).setInsets(10,0,2,10));
-        mainPanel.add(btnBrowse,new GBC(4,1,1,1).setFill(GBC.BOTH).setInsets(10,0,2,10));
-        mainPanel.add(lbCmdOption,new GBC(0,2,2,1).setFill(GBC.BOTH).setInsets(10,10,2,0));
-        mainPanel.add(tfCmdOption,new GBC(1,2,3,1).setFill(GBC.BOTH).setInsets(10,0,2,10));
-        mainPanel.add(lbCmdOptionHelp,new GBC(4,2,1,1).setFill(GBC.BOTH).setInsets(10,0,2,10));
-        mainPanel.add(btnOK,new GBC(0,3,1,1).setFill(GBC.BOTH).setInsets(10,10,10,0));
-        mainPanel.add(btnCancel,new GBC(1,3,1,1).setFill(GBC.BOTH).setInsets(10,0,10,10));
+        mainPanel.add(lbRunName,new GBC(0,0,2,1).setFill(GBC.NORTH).setInsets(5,2,5,2));
+        mainPanel.add(tfRunName, new GBC(2,0,3,1).setFill(GBC.BOTH).setInsets(5,2,5,2));
+        mainPanel.add(lbRunNameHelp,new GBC(5,0,1,1).setFill(GBC.BOTH).setInsets(5,2,5,2));
+        mainPanel.add(lbPluginPath,new GBC(0,1,2,1).setFill(GBC.NORTH).setInsets(5,2,5,2));
+        mainPanel.add(tfPluginPath,new GBC(2,1,3,1).setFill(GBC.BOTH).setInsets(5,2,5,2));
+        mainPanel.add(btnBrowse,new GBC(5,1,1,1).setFill(GBC.BOTH).setInsets(5,2,5,2));
+        mainPanel.add(lbCmdOption,new GBC(0,2,2,1).setFill(GBC.NORTH).setInsets(5,2,5,2));
+        mainPanel.add(tfCmdOption,new GBC(2,2,3,1).setFill(GBC.BOTH).setInsets(5,2,5,2));
+        mainPanel.add(lbCmdOptionHelp,new GBC(5,2,1,1).setFill(GBC.BOTH).setInsets(5,2,5,2));
+        mainPanel.add(btnOK,new GBC(3,3,1,1).setFill(GBC.NORTH).setInsets(5,2,5,2).setAnchor(GBC.CENTER));
+        mainPanel.add(btnCancel,new GBC(4,3,1,1).setFill(GBC.NORTH).setInsets(5,2,5,2).setAnchor(GBC.CENTER));
 
         if(Util.getOSType() == Util.OS_LINUX){
             lbPrompt.setText("Notice: The command will be copied to the clipboard. Paste it into Terminal!");
-            mainPanel.add(lbPrompt,new GBC(2,3,1,1).setFill(GBC.BOTH).setInsets(10,0,2,10));
+            mainPanel.add(lbPrompt,new GBC(0,4,1,1).setFill(GBC.BOTH).setInsets(5,0,2,5));
         }else if(Util.getOSType() == Util.OS_MAC){
             lbPrompt.setText("Notice: Please ensure that Terminal is in running state!");
-            mainPanel.add(lbPrompt,new GBC(2,3,1,1).setFill(GBC.BOTH).setInsets(10,0,2,10));
+            mainPanel.add(lbPrompt,new GBC(0,4,1,1).setFill(GBC.BOTH).setInsets(5,0,2,5));
         }
         lbPrompt.setForeground(new Color(0,0,255));
-
         this.setModal(true);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.add(mainPanel);
