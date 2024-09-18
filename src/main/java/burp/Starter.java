@@ -48,6 +48,7 @@ public class Starter implements Runnable {
                 command = command.replace("{{root_main}}",Config.getRequstRootDomain());
                 command = command.replace("{{urldir2}}",Config.getRequstUrlDir2());
                 command = command.replace("{{port}}",Config.getRequstPort());
+                command = command.replace("{{root_url}}",Config.getRequstRootUrl());
                 cmds.add("osascript");
                 cmds.add("-e");
                 String cmd = "tell application \"Terminal\" \n" +
